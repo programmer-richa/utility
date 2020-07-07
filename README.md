@@ -1,0 +1,2 @@
+# utility
+Common function definition.
