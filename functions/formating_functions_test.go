@@ -1,8 +1,7 @@
-package testing
+package functions
 
 import (
 	"fmt"
-	"github.com/programmer-richa/utility/functions"
 	"testing"
 )
 
@@ -10,9 +9,9 @@ import (
 //the TitleCase function defined in functions package.
 func TestTitleCase(t *testing.T) {
 	tests := []struct {
-		name string
-		value   string
-		correctOutput  string
+		name          string
+		value         string
+		correctOutput string
 	}{
 		{
 			"All Lower case values",
@@ -39,7 +38,7 @@ func TestTitleCase(t *testing.T) {
 	for _, c := range tests {
 		t.Run(c.name, func(t *testing.T) {
 
-			if  functions.TitleCase(c.value) != c.correctOutput {
+			if TitleCase(c.value) != c.correctOutput {
 				t.Fatal("TitleCase", c.name)
 			} else {
 				fmt.Println("TitleCase Validator-", c.name, "Pass")
@@ -52,9 +51,9 @@ func TestTitleCase(t *testing.T) {
 //the CurrencyFormat function defined in functions package.
 func TestCurrencyFormat(t *testing.T) {
 	tests := []struct {
-		name string
-		value   float64
-		correctOutput  string
+		name          string
+		value         float64
+		correctOutput string
 	}{
 		{
 			"Float with no decimal places",
@@ -81,7 +80,7 @@ func TestCurrencyFormat(t *testing.T) {
 	for _, c := range tests {
 		t.Run(c.name, func(t *testing.T) {
 
-			if  functions.CurrencyFormat(c.value) != c.correctOutput {
+			if CurrencyFormat(c.value) != c.correctOutput {
 				t.Fatal("CurrencyFormat", c.name)
 			} else {
 				fmt.Println("CurrencyFormat Validator-", c.name, "Pass")

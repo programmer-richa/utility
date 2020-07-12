@@ -1,3 +1,4 @@
+// Package encrypt contains functions to cypher and de-cypher data
 package encrypt
 
 import (
@@ -18,38 +19,40 @@ func createHash(key string) string {
 	hasher.Write([]byte(key))
 	return hex.EncodeToString(hasher.Sum(nil))
 }
+
 // Encrypt encrypts the text with the provided passphrase value
-func Encrypt(text string, passphrase string) (error,string) {
-	data:=[]byte(text)
+func Encrypt(text string, passphrase string) (error, string) {
+	data := []byte(text)
 	block, _ := aes.NewCipher([]byte(createHash(passphrase)))
 	gcm, err := cipher.NewGCM(block)
 	if err != nil {
-		return err,""
+		return err, ""
 	}
 	nonce := make([]byte, gcm.NonceSize())
 	if _, err = io.ReadFull(rand.Reader, nonce); err != nil {
-		return err,""
+		return err, ""
 	}
 	ciphertext := gcm.Seal(nonce, nonce, data, nil)
-	return nil,string(ciphertext)
+	return nil, string(ciphertext)
 }
+
 // Decrypt decrypts the text with the provided passphrase value
-func Decrypt(text string, passphrase string) (error,string) {
-	data:=[]byte(text)
+func Decrypt(text string, passphrase string) (error, string) {
+	data := []byte(text)
 	key := []byte(createHash(passphrase))
 	block, err := aes.NewCipher(key)
 	if err != nil {
-		return err,""
+		return err, ""
 	}
 	gcm, err := cipher.NewGCM(block)
 	if err != nil {
-		return err,""
+		return err, ""
 	}
 	nonceSize := gcm.NonceSize()
 	nonce, ciphertext := data[:nonceSize], data[nonceSize:]
 	plaintext, err := gcm.Open(nil, nonce, ciphertext, nil)
 	if err != nil {
-		return err,""
+		return err, ""
 	}
-	return nil,string(plaintext)
+	return nil, string(plaintext)
 }

@@ -1,8 +1,7 @@
-package testing
+package validators
 
 import (
 	"fmt"
-	"github.com/programmer-richa/utility/validators"
 	"testing"
 )
 
@@ -63,7 +62,7 @@ func TestPassword(t *testing.T) {
 
 	for _, c := range tests {
 		t.Run(c.name, func(t *testing.T) {
-			if c.valid != validators.Password(c.pass) {
+			if c.valid != Password(c.pass) {
 				t.Fatal("Password Validator Failed", c.name)
 			} else {
 				fmt.Println("Password Validator-", c.name, "Pass")
@@ -124,7 +123,7 @@ func TestEmail(t *testing.T) {
 
 	for _, c := range tests {
 		t.Run(c.name, func(t *testing.T) {
-			if c.valid != validators.Email(c.email) {
+			if c.valid != Email(c.email) {
 				t.Fatal("Email Validator Failed", c.name)
 			} else {
 				fmt.Println("Email Validator-", c.name, "Pass")
@@ -165,7 +164,7 @@ func TestEmpty(t *testing.T) {
 
 	for _, c := range tests {
 		t.Run(c.name, func(t *testing.T) {
-			if c.valid != validators.Empty(c.value) {
+			if c.valid != Empty(c.value) {
 				t.Fatal("Empty Validator Failed-", c.name)
 			} else {
 				fmt.Println("Empty Validator-", c.name, "Pass")
@@ -229,7 +228,7 @@ func TestMinLength(t *testing.T) {
 
 	for _, c := range tests {
 		t.Run(c.name, func(t *testing.T) {
-			if c.valid != validators.MinLength(c.value, c.min) {
+			if c.valid != MinLength(c.value, c.min) {
 				t.Fatal("MinLength Validator Failed-", c.name, c.value, c.min)
 			} else {
 				fmt.Println("MinLength Validator-", c.name, "Pass")
@@ -293,7 +292,7 @@ func TestMaxLength(t *testing.T) {
 
 	for _, c := range tests {
 		t.Run(c.name, func(t *testing.T) {
-			if c.valid != validators.MaxLength(c.value, c.max) {
+			if c.valid != MaxLength(c.value, c.max) {
 				t.Fatal("MaxLength Validator Failed-", c.name, c.value, c.max)
 			} else {
 				fmt.Println("MaxLength Validator-", c.name, "Pass")
@@ -365,7 +364,7 @@ func TestLengthInRange(t *testing.T) {
 
 	for _, c := range tests {
 		t.Run(c.name, func(t *testing.T) {
-			if c.valid != validators.LengthInRange(c.value, c.min, c.max) {
+			if c.valid != LengthInRange(c.value, c.min, c.max) {
 				t.Fatal("LengthInRange Validator Failed-", c.name, c.value, c.min, c.max)
 			} else {
 				fmt.Println("LengthInRange Validator-", c.name, "Pass")
@@ -436,7 +435,7 @@ func TestIsInteger(t *testing.T) {
 
 	for _, c := range tests {
 		t.Run(c.name, func(t *testing.T) {
-			if c.valid != validators.IsInteger(c.value) {
+			if c.valid != IsInteger(c.value) {
 				t.Fatal("IsInteger Validator Failed-", c.name)
 			} else {
 				fmt.Println("IsInteger Validator-", c.name, "Pass")
@@ -529,7 +528,7 @@ func TestIntegerInRange(t *testing.T) {
 
 	for _, c := range tests {
 		t.Run(c.name, func(t *testing.T) {
-			_, res := validators.IntegerInRange(c.value, c.min, c.max)
+			_, res := IntegerInRange(c.value, c.min, c.max)
 			if c.valid != res {
 				t.Fatal("IsInteger Validator Failed-", c.name)
 			} else {
