@@ -10,7 +10,7 @@ import (
 )
 
 func testForm() *Form {
-	form := New("registration", "", "/registration", http.MethodPost)
+	form := New("registration","registration", "", "/registration", http.MethodPost)
 
 	// username
 	form.WithField(form.PrefixFieldName+"Name", new(FieldBuilder).

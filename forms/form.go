@@ -34,6 +34,7 @@ type Form struct {
 	EncryptType     string
 	Action          string
 	Method          string
+	Name       string
 }
 
 // New returns a pointer to Form
@@ -41,7 +42,7 @@ type Form struct {
 // encryption to specify if the form accepts multipart data,
 // action specifies the url of form submission,
 // and method (GET/POST) supported by the form
-func New(prefix string, encryption string, action string, method string) *Form {
+func New(name string, prefix string, encryption string, action string, method string) *Form {
 	return &Form{
 		Fields:          make(map[string]*Field),
 		FieldNames:      make([]string, 0),
@@ -49,6 +50,7 @@ func New(prefix string, encryption string, action string, method string) *Form {
 		EncryptType:     encryption,
 		Action:          action,
 		Method:          method,
+		Name:name,
 	}
 }
 
