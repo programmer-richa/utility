@@ -12,6 +12,7 @@ type FormatterFunc func(string) string
 // For instance, text, password field.
 type Field struct {
 	Name       string
+	Placeholder       string
 	Formatters []FormatterFunc
 	Loader     LoaderFunc
 	Validators []ValidatorFunc

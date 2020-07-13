@@ -11,6 +11,7 @@ type FieldBuilder struct {
 	min        int
 	max        int
 	fieldType  string
+	placeholder string
 }
 
 // WithFormatters specifies the name of the formatting function of the field.
@@ -63,6 +64,12 @@ func (fb *FieldBuilder) Label(value string) *FieldBuilder {
 	return fb
 }
 
+// Placeholder sets placeholder of the FieldBuilder.
+func (fb *FieldBuilder) Placeholder(value string) *FieldBuilder {
+	fb.placeholder = value
+	return fb
+}
+
 // Empty sets value of empty attribute of the FieldBuilder.
 func (fb *FieldBuilder) Empty(value interface{}) *FieldBuilder {
 	fb.empty = value
@@ -81,5 +88,6 @@ func (fb *FieldBuilder) Build() *Field {
 		Min:        fb.min,
 		Label:      fb.label,
 		FieldType:  fb.fieldType,
+		Placeholder: fb.placeholder,
 	}
 }
